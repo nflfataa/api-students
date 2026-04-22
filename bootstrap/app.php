@@ -15,5 +15,13 @@ return Application::configure(basePath: dirname(__DIR__))
         //
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        //
+        
+    $exceptions->render(function (
+        \Illuminate\Auth\AuthenticationException $e,
+        $request
+    ) {
+        return response()->json([
+            'message' => 'Gagal.'
+        ], 401);
+    });
     })->create();

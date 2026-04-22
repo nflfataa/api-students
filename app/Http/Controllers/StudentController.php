@@ -12,7 +12,7 @@ class StudentController extends Controller
     public function index()
     {
         $students = Student::all();
-        return new studentResource($students, 'Success', 'List of students');
+        return new studentResource($students, 'Success', 'List all students');
     }
 
     public function store(Request $request)
@@ -30,14 +30,14 @@ class StudentController extends Controller
         }
 
         $student = Student::create($request->all());
-        return new studentResource($student, 'Success', 'Student created successfully');
+        return new studentResource($student, 'Success', 'Student created');
     }
 
     public function show($id)
     {
         $student = Student::find($id);
         if ($student) {
-            return new studentResource($student, 'Success', 'Student found');
+            return new studentResource($student, 'Success'  , 'Student found');
         } else {
             return new studentResource(null, 'Failed', 'Student not found');
         }
@@ -48,7 +48,7 @@ class StudentController extends Controller
         $student = Student::find($id);
         if ($student) {
             $student->update($request->all());
-            return new studentResource($student, 'Success', 'Student updated successfully');
+            return new studentResource($student, 'Success', 'Student updated');
         } else {
             return new studentResource(null, 'Failed', 'Student not found');
         }
@@ -59,7 +59,7 @@ class StudentController extends Controller
         $student = Student::find($id);
         if ($student) {
             $student->delete();
-            return new studentResource($student, 'Success', 'Student deleted successfully');
+            return new studentResource($student, 'Success', 'Student deleted');
         } else {
             return new studentResource(null, 'Failed', 'Student not found');
         }
